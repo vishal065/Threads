@@ -7,10 +7,15 @@ psql
 //now the bash command of postgres in bash mode
 \l //for list the database
 \c threads // here threads is the database
-\d users // show all the table of the database
-select * from users
-\x // To exit
+\d users // show all the table of the database or describe
+select \* from users
+\x // expand display
+
+To clear bash terminal command + k in mac and ctrl + k in window
+select \* from users;
+delete from users where 1=1;
 
 prisma
 npx prisma init
 npx prisma migrate dev --name create_user_table
+npx prisma migrate dev --name make_lastname_optional

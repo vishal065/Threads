@@ -14,12 +14,12 @@ datasource db {
 }
 
 model User {
-  id              String @id @default(uuid())
-  firstName       String @map("first_name") //while coding we use firstName but it database it store like first_name  
-  lastName        String @map("last_name")
+  id              String  @id @default(uuid())
+  firstName       String  @map("first_name") //while coding we use firstName but it database it store like first_name  
+  lastName        String? @map("last_name")
   profileImageURL String? @map("profile_image_url")
-  username        String @unique
-  email           String @unique
+  username        String  @unique
+  email           String  @unique
   password        String
 
   @@map("users") // database k table ka naam users hoga
