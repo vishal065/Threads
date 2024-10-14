@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/index.js",
+    "dev": "tsc-watch --onSuccess \"npm start\"",
+    "build": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "@prisma/client": "^5.20.0",
+    "express": "^4.21.1",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
+    "prisma": "^5.20.0",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.6.3"
+  }
+}
