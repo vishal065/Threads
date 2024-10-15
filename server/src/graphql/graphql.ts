@@ -4,6 +4,7 @@ import { User } from "./Users/userIndex";
 async function graphqlServer() {
   const graphql = new ApolloServer({
     typeDefs: `
+        ${User.typeDefs}
       type Query{
       ${User.queries}
     }

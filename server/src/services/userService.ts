@@ -22,7 +22,11 @@ class UserService {
     const hashPassword = createHmac("sha256", salt)
       .update(password)
       .digest("hex");
+
     return hashPassword;
+  }
+  public static decodeJWTToken(token: string) {
+    return JWT.verify(token, JWT_SECRET);
   }
 
   public static async createUser(payload: createUserPayload) {
@@ -44,21 +48,32 @@ class UserService {
   private static getUserByEmail(email: string) {
     return Prisma.user.findUnique({ where: { email } });
   }
+  public static getUserById(id: string) {
+    return Prisma.user.findUnique({ where: { id } });
+  }
 
   public static async loginUser(payload: loginUserPayload) {
     const { email, password } = payload;
 
     const user = await UserService.getUserByEmail(email);
+    console.log("user", user);
 
     if (!user) throw new Error("user not found");
 
     const userHashPassword = UserService.generateHash(salt, password);
 
-    if (userHashPassword === user.password)
+    console.log("userHashPassword;", userHashPassword);
+
+    if (userHashPassword !== user.password) {
+      console.log("compare error");
+
       throw new Error("Incorrect credentaial");
+    }
 
     //Gen token
     const token = JWT.sign({ id: user.id, email: user.email }, JWT_SECRET);
+    console.log("token", token);
+
     return token;
   }
 }
